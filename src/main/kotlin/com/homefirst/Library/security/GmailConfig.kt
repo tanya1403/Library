@@ -50,14 +50,14 @@ class GmailConfig @Autowired constructor(
             .setAccessType("offline")
             .build()
 
-        val credential = flow.loadCredential("user")
-            ?: throw IllegalStateException("No stored credential for user")
+//        val credential = flow.loadCredential("user")
+//            ?: throw IllegalStateException("No stored credential for user")
 
-//        val receiver = LocalServerReceiver.Builder().setPort(8888).build()
-//        val credentials = AuthorizationCodeInstalledApp(flow, receiver).authorize("user")
+        val receiver = LocalServerReceiver.Builder().setPort(8888).build()
+        val credentials = AuthorizationCodeInstalledApp(flow, receiver).authorize("user")
 
 
-        return Gmail.Builder(httpTransport, jsonFactory, credential)
+        return Gmail.Builder(httpTransport, jsonFactory, credentials)
             .setApplicationName("My Gmail App")
             .build()
     }
