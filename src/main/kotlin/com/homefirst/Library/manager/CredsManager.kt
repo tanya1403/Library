@@ -32,7 +32,7 @@ enum class EnPartnerName(val value: String) {
     BILLDESK("BillDesk")
 }
 
-@Component
+@Component()
 class CredsManager(
     @Autowired private val credsRepository: CredsRepository,
     @Autowired private val entityManager: EntityManager

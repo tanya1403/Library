@@ -72,6 +72,8 @@ dependencies {
 	implementation("org.hibernate.orm:hibernate-core:6.2.7.Final")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
+	runtimeOnly("mysql:mysql-connector-java:8.0.33")
+
 }
 
 kotlin {
