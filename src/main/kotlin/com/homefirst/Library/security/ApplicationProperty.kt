@@ -1,6 +1,7 @@
 package com.homefirst.Library.security
 
 
+import com.homefirst.Library.utils.decryptAnyKey
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
@@ -22,17 +23,35 @@ enum class EnvProfile(
 @EnableAsync
 class AppProperty(
 //    @Autowired val credentialManager: CredsManager
-) {
-
-//    companion object {
-//        private var _gDnrCred: Creds? = null
+){
+//
+//companion object {
+//    private var _gDnrCred: Creds? = null
+//}
+//
+//private fun gDnrCred(): Creds? {
+//
+//    if (null == _gDnrCred) {
+//        _gDnrCred = credentialManager.fetchCredentials(
+//            EnPartnerName.GOOGLE_DNR,
+//            EnCredType.PRODUCTION
+//        )
+//
+//        _gDnrCred?.apply {
+//            username = decryptAnyKey(username!!)
+//            password = decryptAnyKey(password!!)
+//        }
 //    }
+//
+//    return _gDnrCred
+//}
 
-
+//
+//
 //    @Bean
 //    fun getJavaMailSender(): JavaMailSender {
 //
-////        val gCred = _gDnrCred ?: gDnrCred()
+//        val gCred = _gDnrCred ?: gDnrCred()
 //
 //        val mailSender = JavaMailSenderImpl()
 //        mailSender.host = "smtp.gmail.com"
@@ -49,7 +68,6 @@ class AppProperty(
 //        return mailSender
 //
 //    }
-
     @Value("\${spring.profiles.active}")
     lateinit var activeProfile : String
 
