@@ -3,6 +3,7 @@ plugins {
 	kotlin("plugin.spring") version "1.9.25"
 	id("org.springframework.boot") version "3.4.5"
 	id("io.spring.dependency-management") version "1.1.7"
+	kotlin("plugin.jpa") version "1.9.0"
 }
 
 group = "com.homefirst.Library"
@@ -24,7 +25,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	compileOnly("org.projectlombok:lombok")
-	runtimeOnly("com.mysql:mysql-connector-j")
+//	runtimeOnly("com.mysql:mysql-connector-j")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
@@ -72,7 +73,28 @@ dependencies {
 	implementation("org.hibernate.orm:hibernate-core:6.2.7.Final")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
-	runtimeOnly("mysql:mysql-connector-java:8.0.33")
+	implementation("mysql:mysql-connector-java:8.0.32")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.hibernate:hibernate-core")
+	implementation("jakarta.persistence:jakarta.persistence-api")
+		implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+		implementation("org.hibernate:hibernate-core:5.6.9.Final")  // Or a suitable version
+		implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+		implementation("org.springframework.boot:spring-boot-starter-web")  // Add web dependency if using REST APIs
+
+// Gmail API dependencies
+//	implementation("com.google.apis:google-api-services-gmail:v1-rev20230614-2.0.0")
+	implementation("com.google.apis:google-api-services-gmail:v1-rev110-1.25.0")
+	// You can try this version
+	implementation("com.google.api-client:google-api-client:1.34.1")
+	implementation("com.google.http-client:google-http-client-jackson2:1.43.3")
+	implementation("com.google.oauth-client:google-oauth-client-jetty:1.34.1")
+
+	// Jakarta Mail dependencies
+	implementation("com.sun.mail:jakarta.mail:2.0.1")
+	implementation("org.eclipse.angus:angus-activation:2.0.1")
+
+
 
 }
 

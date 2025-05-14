@@ -1,10 +1,6 @@
 package com.homefirst.Library.security
 
-import com.homefirst.Library.entity.Creds
-import com.homefirst.Library.manager.CredsManager
-import com.homefirst.Library.manager.EnCredType
-import com.homefirst.Library.manager.EnPartnerName
-import com.homefirst.Library.utils.decryptAnyKey
+
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
@@ -25,52 +21,34 @@ enum class EnvProfile(
 @Configuration
 @EnableAsync
 class AppProperty(
-    @Autowired val credentialManager: CredsManager
+//    @Autowired val credentialManager: CredsManager
 ) {
 
-    companion object {
-        private var _gDnrCred: Creds? = null
-    }
+//    companion object {
+//        private var _gDnrCred: Creds? = null
+//    }
 
-    private fun gDnrCred(): Creds? {
-        if (null == _gDnrCred) {
-            _gDnrCred = credentialManager.fetchCredentials(
-                EnPartnerName.GOOGLE_DNR,
-                EnCredType.PRODUCTION
-            )
 
-            _gDnrCred?.apply {
-                username = decryptAnyKey(username!!)
-                password = decryptAnyKey(password!!)
-
-                println("username======$username")
-                println("password======$password")
-            }
-        }
-        return _gDnrCred
-        return null
-    }
-
-    @Bean
-    fun getJavaMailSender(): JavaMailSender {
-
-        val gCred = _gDnrCred ?: gDnrCred()
-
-        val mailSender = JavaMailSenderImpl()
-        mailSender.host = "smtp.gmail.com"
-        mailSender.port = 587
-        mailSender.username = gCred?.username
-        mailSender.password = gCred?.password
-
-        val props: Properties = mailSender.javaMailProperties
-        props["mail.transport.protocol"] = "smtp"
-        props["mail.smtp.auth"] = true
-        props["mail.smtp.starttls.enable"] = true
-        props["mail.debug"] = true
-
-        return mailSender
-
-    }
+//    @Bean
+//    fun getJavaMailSender(): JavaMailSender {
+//
+////        val gCred = _gDnrCred ?: gDnrCred()
+//
+//        val mailSender = JavaMailSenderImpl()
+//        mailSender.host = "smtp.gmail.com"
+//        mailSender.port = 587
+//        mailSender.username = gCred?.username
+//        mailSender.password = gCred?.password
+//
+//        val props: Properties = mailSender.javaMailProperties
+//        props["mail.transport.protocol"] = "smtp"
+//        props["mail.smtp.auth"] = true
+//        props["mail.smtp.starttls.enable"] = true
+//        props["mail.debug"] = true
+//
+//        return mailSender
+//
+//    }
 
     @Value("\${spring.profiles.active}")
     lateinit var activeProfile : String
@@ -96,29 +74,30 @@ class AppProperty(
     @Value("\${application.key.mamasSalt}")
     lateinit var  mamasSalt: String
 
-    @Value("\${application.s3Bucket.name}")
-    lateinit var s3BucketName: String
+//    @Value("\${application.s3Bucket.name}")
+//    lateinit var s3BucketName: String
+//
+//    @Value("\${application.s3Bucket.region}")
+//    lateinit var s3BucketRegion: String
+//
+//    @Value("\${application.path.preDataBackup}")
+//    lateinit var preDataBackup: String
+//
+//    @Value("\${application.path.localDataStorage}")
+//    lateinit var localDataStorage: String
+//
+//    @Value("\${application.path.bulkUpload}")
+//    lateinit var bulkUploadLPath: String
+//
+//    @Value("\${application.path.originalFilePath}")
+//    lateinit var originalFilePath: String
 
-    @Value("\${application.s3Bucket.region}")
-    lateinit var s3BucketRegion: String
-
-    @Value("\${application.path.preDataBackup}")
-    lateinit var preDataBackup: String
-
-    @Value("\${application.path.localDataStorage}")
-    lateinit var localDataStorage: String
-
-    @Value("\${application.path.bulkUpload}")
-    lateinit var bulkUploadLPath: String
-
-    @Value("\${application.path.originalFilePath}")
-    lateinit var originalFilePath: String
+    @Value("\${application.path.credentials}")
+    lateinit var credentials: String
 
 
-
-
-    @Value("\${spring.mail.username}")
-    lateinit var senderEmail: String
+//    @Value("\${spring.mail.username}")
+//    lateinit var senderEmail: String
 
 
 }
